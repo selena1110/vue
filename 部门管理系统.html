@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>部门管理系统</title>
+	<script src="vue.js"></script>
+	<script type="text/javascript" src="node_modules/jquery/dist/jquery.min.js"></script>
+	<script type="text/javascript" src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+	<style>
+		*{
+			margin:0;
+			padding:0;
+		}
+		#header{
+			width:1090px;
+			margin:0px auto;
+			margin-top:50px;
+		}
+		.left{
+			float:left;
+			margin-left:20px;
+			margin-bottom:20px;
+		}
+		.right{
+			float:right;
+			margin-right:20px;
+			margin-bottom:20px;
+		}
+		table,td{
+			border: 1px solid #ccc;
+			border-collapse: collapse;
+			text-align: center;
+		}
+		table{
+			clear:both;
+			width:1090px;
+			margin:20px auto;
+		}
+		tr{
+			line-height: 30px;
+		}
+		td button{
+			width:40px;
+			height:24px;
+			border:1px solid orange;
+			cursor:pointer;
+		}
+		fieldset{
+			width:1040px;
+			margin:0 auto;
+			padding:25px;
+		}
+		fieldset p{
+			line-height: 30px;
+		}
+		.adddepart{
+          width:1090px;
+          margin:0px auto;
+          text-align:center;
+          display:block;
+		}
+	</style>
+</head>
+<body>
+<div id="header">
+	 <div class="left">
+	<form class="form-inline">
+  <div class="form-group">
+    <label for="exampleInputName2">部门</label>
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="请输入部门">
+  </div>
+  <button type="submit" class="btn btn-default">查询</button>
+  </form>
+    </div>
+  <div class="right">
+  	<form class="form-inline">
+  <button type="button" class="btn btn-default" id="adddepart">添加部门</button>
+</form>
+  </div>
+</div>
+<div id="demo">
+	 <table>
+	 	<tr>
+	 		<th>序号</th>
+	 		<th>部门名称</th>
+	 		<th>描述</th>
+	 		<th>父部门</th>
+	 		<th>操作</th>
+	 	</tr>
+	 	<tr v-for="book in books">
+	 		<td>{{book.id}}</td>
+	 		<td>{{book.name}}</td>
+	 		<td>{{book.dirc}}</td>
+	 		<td>{{book.father}}</td>
+	 		<td>
+	 		    <button @click="lookBook(index)">编辑</button>
+	 			<button @click="delBook(index)">删除</button>
+	 		</td>
+	 	</tr>
+	 </table>
+<fieldset>
+<div class="adddepart">
+
+	<form class="form-inline">
+  <div class="form-group">
+    <label for="exampleInputName2">部门名称</label>
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="请输入部门">
+  </div><br><br>
+  <div class="form-group">
+    <label for="exampleInputName2">描述&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="请输入描述">
+  </div><br><br>
+  <div class="form-group">
+    <label for="exampleInputName2">父部门&nbsp;</label>
+    <input type="text" class="form-control" id="exampleInputName2" placeholder="请输入父部门"><br><br>
+    <button type="submit" class="btn btn-default">保存</button>
+  </div>
+</form>
+
+</div>
+</fieldset>
+</div>
+</body>
+<script>
+	var app=new Vue({
+		el:'#demo',
+		data:{
+			books:[
+				{id:1,name:'技术1',dirc:'XX',father:'技术部'},
+				{id:2,name:'技术2',dirc:'XX',father:'技术部'},
+				{id:3,name:'技术3',dirc:'XX',father:'技术部'},
+				{id:4,name:'技术4',dirc:'XX',father:'技术部'}
+			],
+			newBook:{
+				id:0,
+				name:"",
+				author:"",
+				price:""
+			}
+		},
+		methods:{
+			delBook:function(idx){
+				this.books.splice(idx,1)
+			},
+					}
+	})
+
+</script>
+</html>
